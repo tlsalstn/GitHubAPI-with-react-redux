@@ -1,19 +1,15 @@
 import React from 'react';
-import "./SearchBox.scss";
+import { Search } from "../../styles/common/Search";
 
 type Props = {
-    className?: string;
     value: string;
+    placeholder: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onKeyUp: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
-function SearchBox({className, value, onChange, onKeyUp}: Props) {
-    return (
-        <div className={"SearchBox " + className}>
-            <input value={value} onChange={e => onChange(e)} onKeyUp={e => onKeyUp(e)} placeholder={"Search username"} spellCheck="false" />
-        </div>
-    )
-}
+const SearchBox = ({value, placeholder, onChange, onKeyUp}: Props) => (
+    <Search value={value} onChange={e => onChange(e)} onKeyUp={e => onKeyUp(e)} placeholder={placeholder} spellCheck="false" />
+)
 
 export default SearchBox;
