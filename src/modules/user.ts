@@ -85,6 +85,7 @@ export const userAPI = (name: string) => {
                 url: "https://api.github.com/users/" + name
             });
 
+            console.log(response.data);
             dispatch(getUserData(response.data));
         } catch (error) {
             alert(error.response.data.message);

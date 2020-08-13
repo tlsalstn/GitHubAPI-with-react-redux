@@ -168,15 +168,13 @@ export const repositoryAPI = (name: string) => {
                 url: "https://api.github.com/users/" + name + "/repos",
                 headers: {
                     Accept: "application/vnd.github.inertia-preview+json"
-                },
-                params: {
-                    sort: "pushed"
                 }
             });
 
+            console.log(response.data);
             dispatch(getRepositoryData(response.data));
         } catch (error) {
-            console.log(error);
+            // alert(error.response.data.message);
         }
     }
 }

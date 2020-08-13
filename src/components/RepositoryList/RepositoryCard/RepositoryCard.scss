@@ -1,0 +1,44 @@
+.RepositoryCard {
+    border-top: 1px solid #fff;
+    width: 100%;
+    height: 150px;
+    background: inherit;
+    color: #fff;
+    &:last-child {
+        border-bottom: 1px solid #fff;
+    }
+    &:hover {
+        cursor: pointer;
+    }
+    &-Info {
+        padding: 20px;
+        width: 100%;
+        height: 100%;
+        color: inherit;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        &-Title {
+            width: 100%;
+            color: inherit;
+            p {
+                margin: 0;
+                color: inherit;
+            }
+            &-Name {
+                padding: 3px 0;
+                font-size: 30px;
+                font-weight: bold;
+            }
+            &-Description {
+                padding: 2px 0;
+                font-size: 18px;
+            }
+            &-Language {
+                bottom: 15px;
+                font-size: 18px;
+                position: absolute;
+            }
+        }
+    }
+}
