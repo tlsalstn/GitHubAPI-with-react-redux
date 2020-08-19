@@ -3,10 +3,15 @@ import { createGlobalStyle } from "styled-components"
 const GlobalStyle = createGlobalStyle`
 * {
 	margin: 0;
+	padding: 0;
+    border: 0;
     width: 100%;
     height: 100%;
     box-sizing: border-box;
+    color: #fff;
     outline: none;
+    user-select: none;
+    -webkit-user-select: none;
 }
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -21,11 +26,12 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	padding: 0;
-    border: 0;
 	font-size: 100%;
 	font: inherit;
     vertical-align: baseline;
+}
+button, span {
+    width: auto;
 }
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
@@ -44,6 +50,9 @@ blockquote:before, blockquote:after,
 q:before, q:after {
 	content: '';
 	content: none;
+}
+button {
+    background: inherit;
 }
 table {
 	border-collapse: collapse;
