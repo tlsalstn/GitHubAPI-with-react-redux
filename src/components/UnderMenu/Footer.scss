@@ -1,0 +1,30 @@
+.Footer {
+    right: 30px;
+    bottom: 30px;
+    border-radius: 60px;
+    padding: 5px;
+    width: auto;
+    height: 60px;
+    background: gray;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2);
+    position: fixed;
+    &-Menu {
+        padding: 5px;
+        color: #fff;
+        display: flex;
+        &:hover {
+            color: hsla(0,0%,100%,.7);
+        }
+        a {
+            padding: 5px 5px;
+            width: 48px;
+        }
+    }
+}
+
+.logo {
+    fill: rgba(255, 255, 255, .8);
+    &:hover {
+        fill: rgba(255, 255, 255, .2)
+    }
+}
