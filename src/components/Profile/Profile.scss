@@ -1,0 +1,33 @@
+.Profile {
+    margin: 0 auto;
+    width: 50%;
+    min-width: 800px;
+    display: flex;
+    &-Image {
+        width: 180px;
+        img {
+            border-radius: 50%;
+        }
+    }
+    &-Info {
+        padding: 0 20px;
+        text-align: left;
+        & > div {
+            margin-bottom: 6px;
+        }
+        &-Name {
+            display: flex;
+            & > span {
+                max-width: 550px;
+                padding-right: 10px;
+                font-size: 32px;
+            }
+        }
+        &-Follow {
+            display: flex;
+            & > span {
+                margin: 0 5px;
+            }
+        }
+    }
+}
