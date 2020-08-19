@@ -1,7 +1,6 @@
 .Profile {
     margin: 0 auto;
-    width: 50%;
-    min-width: 800px;
+    width: 100%;
     display: flex;
     &-Image {
         width: 180px;
@@ -18,7 +17,6 @@
         &-Name {
             display: flex;
             & > span {
-                max-width: 550px;
                 padding-right: 10px;
                 font-size: 32px;
             }
