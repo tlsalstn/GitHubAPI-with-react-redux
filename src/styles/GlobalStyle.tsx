@@ -4,7 +4,9 @@ const GlobalStyle = createGlobalStyle`
 * {
 	margin: 0;
     width: 100%;
+    height: 100%;
     box-sizing: border-box;
+    outline: none;
 }
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -20,7 +22,7 @@ figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	padding: 0;
-    border: none;
+    border: 0;
 	font-size: 100%;
 	font: inherit;
     vertical-align: baseline;
@@ -46,6 +48,10 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+.notice {
+    font-size: 2.5vw;
+    font-weight: 800;
 }
 `
 
