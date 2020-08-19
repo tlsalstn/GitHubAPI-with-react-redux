@@ -33,6 +33,7 @@ time, mark, audio, video {
 p, span {
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 a, button, span {
     width: auto;
