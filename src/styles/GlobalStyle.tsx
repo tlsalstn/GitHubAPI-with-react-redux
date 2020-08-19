@@ -30,7 +30,11 @@ time, mark, audio, video {
 	font: inherit;
     vertical-align: baseline;
 }
-button, span {
+p, span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+a, button, span {
     width: auto;
 }
 article, aside, details, figcaption, figure, 
