@@ -1,4 +1,4 @@
-import axios from "axios";
+import github from "../network/github";
 
 const GET_USER_DATA = "user/GET_USER_DATA" as const;
 
@@ -43,62 +43,36 @@ export type UserState = {
     url: string;
 }
 
-export const initialUserState: UserState = {
-    avatar_url: "",
-    bio: "",
-    blog: "",
-    company: "",
-    created_at: "2020-01-01T00:00:00Z",
-    email: null,
-    events_url: "",
-    followers: 0,
-    followers_url: "",
-    following: 0,
-    following_url: "",
-    gists_url: "",
-    gravatar_id: "",
-    html_url: "",
-    id: 0,
-    location: null,
-    login: "",
-    name: "",
-    node_id: "",
-    organizations_url: "",
-    public_gists: 0,
-    public_repos: 0,
-    received_events_url: "",
-    repos_url: "",
-    site_admin: false,
-    starred_url: "",
-    subscriptions_url: "",
-    twitter_username: "",
-    type: "User",
-    updated_at: "2020-01-01T00:00:00Z",
-    url: ""
-}
-
 export const userAPI = (name: string) => {
     return async (dispatch: any) => {
         try {
-            const response = await axios({
+            const response = await github({
                 method: "GET",
-                url: "https://api.github.com/users/" + name
+                url: "/users/" + name,
+                headers: {
+                    "Accept": "application/vnd.github.v3+json"
+                }
             });
 
-            console.log(response.data);
-            dispatch(getUserData(response.data));
+            try {
+                console.log(response.data)
+                dispatch(getUserData(response.data))
+            } catch (error) {
+                console.log(error)
+            }
         } catch (error) {
-            alert(error.response.data.message);
+            console.log(error)
+            alert(error.response.data.message)
         }
     }
 }
 
-function user(state: UserState = initialUserState, action: UserAction) {
+function user(state: UserState = {} as UserState, action: UserAction) {
     switch (action.type) {
         case GET_USER_DATA:
             return action.data
         default:
-            return state;
+            return state
     }
 }
 

@@ -1,5 +1,5 @@
-import axios from "axios";
-import { UserState, initialUserState } from "./user";
+import github from "../network/github";
+import { UserState } from "./user";
 
 const GET_REPOSITORY_DATA = "repository/GET_REPOSITORY_DATA" as const;
 
@@ -85,90 +85,12 @@ export type RepositoryState = {
     default_branch: string;
 }
 
-export const initialRepositoryState: RepositoryState = {
-    archive_url: "",
-    archived: false,
-    assignees_url: "",
-    blobs_url: "",
-    branches_url: "",
-    clone_url: "",
-    collaborators_url: "",
-    comments_url: "",
-    commits_url: "",
-    compare_url: "",
-    contents_url: "",
-    contributors_url: "",
-    created_at: "2020-01-01T00:00:00Z",
-    default_branch: "",
-    deployments_url: "",
-    description: "",
-    disabled: false,
-    downloads_url: "",
-    fork: false,
-    forks: 0,
-    forks_count: 0,
-    forks_url: "",
-    full_name: "",
-    git_commits_url: "",
-    git_refs_url: "",
-    git_tags_url: "",
-    git_url: "",
-    has_download: false,
-    has_issues: false,
-    has_pages: false,
-    has_projects: false,
-    has_wiki: false,
-    homepage: "",
-    hooks_url: "",
-    html_url: "",
-    id: 0,
-    issue_comment_url: "",
-    issue_events_url: "",
-    issues_url: "",
-    keys_url: "",
-    labels_url: "",
-    language: null,
-    languages_url: "",
-    license: null,
-    merges_url: "",
-    milestones_url: "",
-    mirror_url: null,
-    name: "",
-    node_id: 0,
-    notifications_url: "",
-    open_issues: 0,
-    open_issues_count: 0,
-    owner: initialUserState,
-    private: false,
-    pulls_url: "",
-    pushed_at: "",
-    releases_url: "",
-    size: 0,
-    ssh_url: "",
-    stargazers_count: 0,
-    stargazers_url: "",
-    statuses_url: "",
-    subscribers_url: "",
-    subscription_url: "",
-    svn_url: "",
-    tags_url: "",
-    teams_url: "",
-    trees_url: "",
-    updated_at: "2020-01-01T00:00:00Z",
-    url: "",
-    watchers: 0,
-    watchers_count: 0
-}
-
 export const repositoryAPI = (name: string) => {
     return async (dispatch: any) => {
         try {
-            const response = await axios({
+            const response = await github({
                 method: "GET",
-                url: "https://api.github.com/users/" + name + "/repos",
-                headers: {
-                    Accept: "application/vnd.github.inertia-preview+json"
-                }
+                url: "/users/" + name + "/repos"
             });
 
             console.log(response.data);
@@ -179,7 +101,7 @@ export const repositoryAPI = (name: string) => {
     }
 }
 
-function repository(state: RepositoryState[] = [initialRepositoryState], action: RepositoryAction) {
+function repository(state: RepositoryState[] = [], action: RepositoryAction) {
     switch(action.type) {
         case GET_REPOSITORY_DATA:
             return action.data;
