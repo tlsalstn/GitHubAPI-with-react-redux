@@ -1,13 +1,13 @@
 import github from "../network/github";
 
-const GET_USER_DATA = "user/GET_USER_DATA" as const;
+const GET_USER_DATA = "user/GET_USER_DATA" as const
 
 export const getUserData = (data: UserState) => ({
     type: GET_USER_DATA,
     data
-});
+})
 
-export type UserAction = | ReturnType<typeof getUserData>;
+export type UserAction = | ReturnType<typeof getUserData>
 
 export type UserState = {
     avatar_url: string;

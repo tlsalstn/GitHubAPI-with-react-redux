@@ -2,6 +2,9 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
+    devServer: {
+        port: 3000
+    },
     entry: ['babel-polyfill', './src/index.tsx'],
     output: {
         path: path.join(__dirname, '/dist'),

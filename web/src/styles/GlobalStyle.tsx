@@ -63,9 +63,15 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-.notice {
-    font-size: 2.5vw;
-    font-weight: 800;
+.bgimg {
+    width: 40px;
+    height: 40px;
+}
+.logo {
+    fill: rgba(255, 255, 255, .8);
+    &:hover {
+        fill: rgba(255, 255, 255, .2)
+    }
 }
 `
 

@@ -1,0 +1,70 @@
+.MainContainer {
+    &-Navbar {
+        height: 150px;
+        background: #181a1d;
+        display: grid;
+        place-items: center;
+
+        input {
+            border: 0;
+            border-radius: 10px;
+            padding: 10px 16px;
+            width: 30%;
+            height: 40%;
+            background: rgba(0, 0, 0, .2);
+            font-size: 20px;
+        }
+
+        a, button {
+            top: 20px;
+            right: 20px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            padding: 5px 12px;
+            height: auto;
+            cursor: pointer;
+            position: absolute;
+            text-decoration: none;
+            transition: .2s;
+            &:hover {
+                background: #fff;
+                color: #181a1d;
+            }
+        }
+    }
+    &-Wrap {
+        padding: 40px;
+        height: auto;
+        min-height: 787px;
+        background: #26292c;
+        text-align: center;
+        &-Content {
+            margin: 0 auto;
+            width: 1080px;
+            & > div {
+                padding-bottom: 40px;
+            }
+            &-Menu {
+                ul {
+                    border-bottom: 1px solid rgba(255, 255, 255, .5);
+                    display: flex;
+                    justify-content: space-around;
+                    li {
+                        border-bottom: 2px solid transparent;
+                        height: 40px;
+                        cursor: pointer;
+                        display: flex;
+                        justify-content: center;
+                        flex-direction: column;
+                        &:hover {
+                            border-bottom-color: rgba(255, 255, 255, .5);
+                        }
+                        &[data-aria-selected="true"] {
+                            border-bottom-color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
