@@ -3,7 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     devServer: {
-        port: 3000
+        port: 3000,
+        historyApiFallback: true
     },
     entry: ['babel-polyfill', './src/index.tsx'],
     output: {
