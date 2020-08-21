@@ -6,6 +6,7 @@
   "dependencies": {
     "@types/react": "^16.9.46",
     "@types/react-dom": "^16.9.8",
+    "@types/styled-components": "^5.1.2",
     "html-webpack-plugin": "^4.3.0",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
