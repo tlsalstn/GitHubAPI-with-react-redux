@@ -6,7 +6,6 @@ const GlobalStyle = createGlobalStyle`
 	padding: 0;
     border: 0;
     width: 100%;
-    height: 100%;
     box-sizing: border-box;
     color: #fff;
     outline: none;
@@ -30,13 +29,11 @@ time, mark, audio, video {
 	font: inherit;
     vertical-align: baseline;
 }
-p, span {
+a, button, p, span {
+    width: auto;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-}
-a, button, span {
-    width: auto;
 }
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
@@ -63,15 +60,28 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-.bgimg {
-    width: 40px;
-    height: 40px;
+html, body, #root, .Container {
+    height: 100%;
+}
+.Wait {
+    margin: 0 auto;
+    width: auto;
+    svg {
+        width: 45px;
+        height: 45px;
+    }
 }
 .logo {
     fill: rgba(255, 255, 255, .8);
     &:hover {
         fill: rgba(255, 255, 255, .2)
     }
+}
+.Card {
+    border-radius: 20px;
+    padding: 20px;
+    background: #363b42;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2);
 }
 `
 
