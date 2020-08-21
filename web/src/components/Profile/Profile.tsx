@@ -15,7 +15,7 @@ interface Props {
 
 const Profile = ({ imgUrl, name, type, followers, following, bio, location, blog }: Props) => {
     return (
-        <div className="Profile">
+        <div className="Profile Card">
             <div className="Profile-Image">
                 <img src={imgUrl} alt="avatar" />
             </div>
@@ -39,7 +39,7 @@ const Profile = ({ imgUrl, name, type, followers, following, bio, location, blog
                 </div>}
                 {blog &&
                 <div className="Profile-Info-Blog">
-                    <a href={blog} target="_blank" rel="noopener noreferrer">{blog}</a>
+                    <a href={blog} target="_blank" rel="noopener noreferrer" title={blog}>{blog}</a>
                 </div>}
             </div>
         </div>
