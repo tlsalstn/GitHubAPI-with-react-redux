@@ -22,4 +22,4 @@ const Footer = ({ github, twitter }: Props) => {
     )
 }
 
-export default Footer
+export default React.memo(Footer)

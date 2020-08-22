@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import "./Profile.scss"
 import Badge from '../Badge/Badge'
 
@@ -46,4 +46,4 @@ const Profile = ({ imgUrl, name, type, followers, following, bio, location, blog
     )
 }
 
-export default Profile
+export default React.memo(Profile)
