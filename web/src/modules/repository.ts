@@ -1,16 +1,49 @@
-import github from "../network/github";
-import { UserState } from "./user";
+import github from "../network/github"
+import { UserState } from "./user"
 
-const GET_REPOSITORY_DATA = "repository/GET_REPOSITORY_DATA" as const;
+const GET_REPOSITORY_REQUEST = "repository/GET_REPOSITORY_REQUEST" as const
+const GET_REPOSITORY_SUCCESS = "repository/GET_REPOSITORY_SUCCESS" as const
+const GET_REPOSITORY_FAILURE = "repository/GET_REPOSITORY_FAILURE" as const
 
-export const getRepositoryData = (data: RepositoryState[]) => ({
-    type: GET_REPOSITORY_DATA,
-    data
-});
+const GET_REPOSITORY_LIST_REQUEST = "repository/GET_REPOSITORY_DATA_REQUEST" as const
+const GET_REPOSITORY_LIST_SUCCESS = "repository/GET_REPOSITORY_DATA_SUCCESS" as const
+const GET_REPOSITORY_LISt_FAILURE = "repository/GET_REPOSITORY_DATA_FAILURE" as const
 
-export type RepositoryAction = | ReturnType<typeof getRepositoryData>;
+export const getRepositoryRequest = () => ({
+    type: GET_REPOSITORY_REQUEST
+})
 
-export type RepositoryState = {
+export const getRepositorySuccess = (repository: Repository) => ({
+    type: GET_REPOSITORY_SUCCESS,
+    payload: repository
+})
+
+export const getRepositoryFailure = (error: string) => ({
+    type: GET_REPOSITORY_FAILURE,
+    error
+})
+
+export const getRepositoryListRequest = () => ({
+    type: GET_REPOSITORY_LIST_REQUEST
+})
+export const getRepositoryListSuccess = (repositories: Repository[]) => ({
+    type: GET_REPOSITORY_LIST_SUCCESS,
+    payload: repositories
+})
+export const getRepositoryListFailure = (error: string) => ({
+    type: GET_REPOSITORY_LISt_FAILURE,
+    error
+})
+
+export type RepositoryAction =
+    | ReturnType<typeof getRepositoryRequest>
+    | ReturnType<typeof getRepositorySuccess>
+    | ReturnType<typeof getRepositoryFailure>
+    | ReturnType<typeof getRepositoryListRequest>
+    | ReturnType<typeof getRepositoryListSuccess>
+    | ReturnType<typeof getRepositoryListFailure>
+
+export type Repository = {
     id: number;
     node_id: number;
     name: string;
@@ -85,28 +118,91 @@ export type RepositoryState = {
     default_branch: string;
 }
 
-export const repositoryAPI = (name: string) => {
-    return async (dispatch: any) => {
-        try {
-            const response = await github({
-                method: "GET",
-                url: "/users/" + name + "/repos"
-            });
+export type RepositoryState = {
+    fetchingUpdate: boolean
+    repository: Repository
+    repositories: Repository[],
+    error: string
+}
 
-            console.log(response.data);
-            dispatch(getRepositoryData(response.data));
-        } catch (error) {
-            // alert(error.response.data.message);
-        }
+const initialState: RepositoryState = {
+    fetchingUpdate: false,
+    repository: {} as Repository,
+    repositories: [],
+    error: ""
+}
+
+export const repositoryAPI = (name: string, repo_name: string) => async (dispatch: Function) => {
+    dispatch(getRepositoryRequest())
+
+    try {
+        const response = await github({
+            method: "GET",
+            url: "/users/" + name.toLowerCase() + "/" + repo_name.toLowerCase(),
+            headers: {
+                Accept: "application/vnd.github.v3+json"
+            }
+        })
+
+        console.log(response)
+        dispatch(getRepositoryFailure(""))
+    } catch (error) {
+        console.log(error)
+        dispatch(getRepositoryFailure(""))
     }
 }
 
-function repository(state: RepositoryState[] = [], action: RepositoryAction) {
-    switch(action.type) {
-        case GET_REPOSITORY_DATA:
-            return action.data;
+export const repositoryListAPI = (name: string) => async (dispatch: any) => {
+    dispatch(getRepositoryListRequest())
+
+    try {
+        const response = await github({
+            method: "GET",
+            url: "/users/" + name.toLowerCase() + "/repos",
+            params: {
+                sort: 'updated'
+            }
+        });
+
+        console.log(response.data);
+        if(response.status === 200) dispatch(getRepositoryListSuccess(response.data))
+        else dispatch(getRepositoryListFailure(""))
+    } catch (error) {
+        console.log(error)
+        dispatch(getRepositoryListFailure(error.message))
+    }
+}
+
+function repository(state: RepositoryState = initialState, action: RepositoryAction) {
+    switch (action.type) {
+        case GET_REPOSITORY_REQUEST:
+        case GET_REPOSITORY_LIST_REQUEST:
+            return {
+                ...state,
+                fetchingUpdate: true,
+                error: ""
+            }
+        case GET_REPOSITORY_SUCCESS:
+            return {
+                ...state,
+                fetchingUpdate: false,
+                repository: action.payload
+            }
+        case GET_REPOSITORY_LIST_SUCCESS:
+            return {
+                ...state,
+                fetchingUpdate: false,
+                repositories: action.payload
+            }
+        case GET_REPOSITORY_FAILURE:
+        case GET_REPOSITORY_LISt_FAILURE:
+            return {
+                ...state,
+                fetchingUpdate: false,
+                error: action.error
+            }
         default:
-            return state;
+            return state
     }
 }
 

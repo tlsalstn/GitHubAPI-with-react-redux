@@ -1,15 +1,27 @@
 import github from "../network/github";
 
-const GET_USER_DATA = "user/GET_USER_DATA" as const
+const GET_USER_REQUEST = "user/GET_USER_REQUEST" as const
+const GET_USER_SUCCESS = "user/GET_USER_SUCCESS" as const
+const GET_USER_FAILURE = "user/GET_USER_FAILURE" as const
 
-export const getUserData = (data: UserState) => ({
-    type: GET_USER_DATA,
-    data
+export const getUserRequest = () => ({
+    type: GET_USER_REQUEST
+})
+export const getUserSuccess = (user: User) => ({
+    type: GET_USER_SUCCESS,
+    payload: user
+})
+export const getUserFailure = (error: string) => ({
+    type: GET_USER_FAILURE,
+    error
 })
 
-export type UserAction = | ReturnType<typeof getUserData>
+export type UserAction =
+    | ReturnType<typeof getUserRequest>
+    | ReturnType<typeof getUserSuccess>
+    | ReturnType<typeof getUserFailure>
 
-export type UserState = {
+export type User = {
     avatar_url: string;
     bio: string | null;
     blog: string;
@@ -43,34 +55,58 @@ export type UserState = {
     url: string;
 }
 
-export const userAPI = (name: string) => {
-    return async (dispatch: any) => {
-        try {
-            const response = await github({
-                method: "GET",
-                url: "/users/" + name,
-                headers: {
-                    "Accept": "application/vnd.github.v3+json"
-                }
-            });
+export type UserState = {
+    fetchingUpdate: boolean
+    user: User
+    error: string
+}
 
-            try {
-                console.log(response.data)
-                dispatch(getUserData(response.data))
-            } catch (error) {
-                console.log(error)
+const initialState: UserState = {
+    fetchingUpdate: false,
+    user: {} as User,
+    error: ""
+}
+
+export const userAPI = (name: string) => async (dispatch: any) => {
+    dispatch(getUserRequest())
+    
+    try {
+        const response = await github({
+            method: "GET",
+            url: "/users/" + name,
+            headers: {
+                "Accept": "application/vnd.github.v3+json"
             }
-        } catch (error) {
-            console.log(error)
-            alert(error.response.data.message)
-        }
+        });
+
+        if (response.status === 200) dispatch(getUserSuccess(response.data))
+        else dispatch(getUserFailure(""))
+    } catch (error) {
+        console.log(error)
+        dispatch(getUserFailure(""))
     }
 }
 
-function user(state: UserState = {} as UserState, action: UserAction) {
+function user(state: UserState = initialState, action: UserAction) {
     switch (action.type) {
-        case GET_USER_DATA:
-            return action.data
+        case GET_USER_REQUEST:
+            return {
+                ...state,
+                fetchingUpdate: true,
+                error: ""
+            }
+        case GET_USER_SUCCESS:
+            return {
+                ...state,
+                fetchingUpdate: false,
+                user: action.payload
+            }
+        case GET_USER_FAILURE:
+            return {
+                ...state,
+                fetchingUpdate: false,
+                error: action.error
+            }
         default:
             return state
     }
