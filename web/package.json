@@ -19,9 +19,10 @@
     "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
-    "test": "webpack-dev-server --mode development --open --hot",
-    "start": "webpack-dev-server --mode production --open --hot",
-    "build": "webpack --mode production"
+    "startD": "webpack-dev-server --mode development --open --hot",
+    "startP": "webpack-dev-server --mode production --open --hot",
+    "buildD": "webpack --mode development",
+    "buildP": "webpack --mode production"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
