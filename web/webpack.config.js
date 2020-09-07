@@ -4,8 +4,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
     devServer: {
         port: 3000,
-        contentBase: "./dist",
-        historyApiFallback: true
+        contentBase: path.join(__dirname, "/dist"),
+        historyApiFallback: {
+            disableDotRule: true
+        }
     },
     devtool: 'inline-source-map',
     performance: {
@@ -16,7 +18,8 @@ module.exports = {
     entry: ['babel-polyfill', './src/index.tsx'],
     output: {
         path: path.join(__dirname, '/dist'),
-        filename: 'bundle.min.js'
+        filename: 'bundle.min.js',
+        publicPath: '/'
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js']
