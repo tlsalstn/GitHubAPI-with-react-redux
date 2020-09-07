@@ -4,14 +4,15 @@ import axios from 'axios'
 export class GithubTokenController {
     public async getToken(req: express.Request, res: express.Response) {
         const { code, state } = req.body
+        console.log("Code: " + code)
+        console.log("State: " + state)
 
         if(!(code && state)) {
             const result = {
-                status: 400,
                 message: "Enter all information"
             }
 
-            res.json(result)
+            res.status(400).json(result)
             return
         }
 
@@ -30,17 +31,21 @@ export class GithubTokenController {
                 }
             })
 
-            const result = {
-                status: 200,
-                data: response.data
+            console.log(response.data)
+            if(response.data.error_description) {
+                res.status(401).json(response.data)
+                return
             }
 
-            res.json(result)
+            res.status(200).json(response.data)
             return
         } catch (error) {
             console.log(error)
+            const result = {
+                message: "Server error"
+            }
 
-            res.status(500)
+            res.status(500).json(result)
             return
         }
     }
