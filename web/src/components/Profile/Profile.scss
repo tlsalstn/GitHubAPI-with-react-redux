@@ -19,15 +19,22 @@
         }
         &-Name {
             display: flex;
+            align-items: center;
             & > span {
                 padding-right: 10px;
+                width: auto;
                 font-size: 32px;
             }
         }
         &-Follow {
             display: flex;
+            & > button {
+                width: auto;
+                background: inherit;
+            }
             & > span {
                 margin: 0 5px;
+                width: auto;
             }
         }
     }

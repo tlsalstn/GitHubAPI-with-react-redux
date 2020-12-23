@@ -1,21 +1,4 @@
 .MainContainer {
-    &-Navbar {
-        height: 150px;
-        background: #181a1d;
-        display: grid;
-        place-items: center;
-
-        input {
-            border: 0;
-            border-radius: 10px;
-            padding: 10px 16px;
-            width: 30%;
-            min-width: 400px;
-            height: 40%;
-            background: rgba(0, 0, 0, .2);
-            font-size: 20px;
-        }
-    }
     &-Wrap {
         padding: 20px;
         min-height: 787px;
@@ -32,7 +15,7 @@
             min-width: 900px;
             width: 60%;
             & > div {
-                margin-bottom: 30px;
+                margin-bottom: 20px;
             }
             &-List {
                 &-Tab {
@@ -40,9 +23,10 @@
                         border-bottom: 1px solid rgba(255, 255, 255, .5);
                         display: flex;
                         justify-content: space-around;
+                        list-style: none;
                         li {
                             border-bottom: 2px solid transparent;
-                            padding: 20px 0;
+                            padding: 15px 0;
                             cursor: pointer;
                             transition: .2s;
                             &:hover {

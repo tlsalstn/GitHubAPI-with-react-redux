@@ -26,7 +26,7 @@ const Profile = ({ imgUrl, name, type, followers, following, bio, location, blog
                 </div>
                 <div className="Profile-Info-Follow">
                     <button>{followers} followers</button>
-                    <span>●</span>
+                    <span>•</span>
                     <button>{following} following</button>
                 </div>
                 {bio &&

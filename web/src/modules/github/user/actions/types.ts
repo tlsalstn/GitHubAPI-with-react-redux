@@ -1,5 +1,3 @@
-export const USER_REQUEST = "user/USER_REQUEST" as const
-export const USER_SUCCESS = "user/USER_SUCCESS" as const
-export const USER_FAILURE = "user/USER_FAILURE" as const
-
-export const SET_USER = "user/SET_USER" as const
+export const GET_USER_REQUEST = "user/GET_USER_REQUEST" as const
+export const GET_USER_SUCCESS = "user/GET_USER_SUCCESS" as const
+export const GET_USER_FAILURE = "user/GET_USER_FAILURE" as const

@@ -1,36 +1,51 @@
-import { REPOSITORY_REQUEST, REPOSITORY_SUCCESS, REPOSITORY_FAILURE, REPOSITORY_LIST_REQUEST, REPOSITORY_LIST_SUCCESS, REPOSITORY_LIST_FAILURE } from "./types"
+import { GET_REPOSITORY_REQUEST, GET_REPOSITORY_SUCCESS, GET_REPOSITORY_FAILURE, GET_REPOSITORY_LIST_REQUEST, GET_REPOSITORY_LIST_SUCCESS, GET_REPOSITORY_LIST_FAILURE, GET_BRANCH_LIST_REQUEST, GET_BRANCH_LIST_SUCCESS, GET_BRANCH_LIST_FAILURE } from "./types"
 
-export const repositoryRequest = () => ({
-    type: REPOSITORY_REQUEST
+export const getRepositoryRequest = () => ({
+    type: GET_REPOSITORY_REQUEST
 })
-export const repositorySuccess = (repository: Repository) => ({
-    type: REPOSITORY_SUCCESS,
+export const getRepositorySuccess = (repository: Repository) => ({
+    type: GET_REPOSITORY_SUCCESS,
     repository
 })
-export const repositoryFailure = (error: string) => ({
-    type: REPOSITORY_FAILURE,
+export const getRepositoryFailure = (error: string) => ({
+    type: GET_REPOSITORY_FAILURE,
     error
 })
 
-export const repositoryListRequest = () => ({
-    type: REPOSITORY_LIST_REQUEST
+export const getRepositoryListRequest = () => ({
+    type: GET_REPOSITORY_LIST_REQUEST
 })
-export const repositoryListSuccess = (repositories: Repository[]) => ({
-    type: REPOSITORY_LIST_SUCCESS,
+export const getRepositoryListSuccess = (repositories: Repository[]) => ({
+    type: GET_REPOSITORY_LIST_SUCCESS,
     repositories
 })
-export const repositoryListFailure = (error: string) => ({
-    type: REPOSITORY_LIST_FAILURE,
+export const getRepositoryListFailure = (error: string) => ({
+    type: GET_REPOSITORY_LIST_FAILURE,
+    error
+})
+
+export const getBranchListRequest = () => ({
+    type: GET_BRANCH_LIST_REQUEST
+})
+export const getBranchListSuccess = (branches: Branch[]) => ({
+    type: GET_BRANCH_LIST_SUCCESS,
+    branches
+})
+export const getBranchListFailure = (error: string) => ({
+    type: GET_BRANCH_LIST_FAILURE,
     error
 })
 
 export type RepositoryAction =
-    | ReturnType<typeof repositoryRequest>
-    | ReturnType<typeof repositorySuccess>
-    | ReturnType<typeof repositoryFailure>
-    | ReturnType<typeof repositoryListRequest>
-    | ReturnType<typeof repositoryListSuccess>
-    | ReturnType<typeof repositoryListFailure>
+    | ReturnType<typeof getRepositoryRequest>
+    | ReturnType<typeof getRepositorySuccess>
+    | ReturnType<typeof getRepositoryFailure>
+    | ReturnType<typeof getRepositoryListRequest>
+    | ReturnType<typeof getRepositoryListSuccess>
+    | ReturnType<typeof getRepositoryListFailure>
+    | ReturnType<typeof getBranchListRequest>
+    | ReturnType<typeof getBranchListSuccess>
+    | ReturnType<typeof getBranchListFailure>
 
 export type Repository = {
     id: number
@@ -344,4 +359,27 @@ type Source = {
     allow_merge_commit: boolean
     subscribers_count: number
     network_count: number
+}
+
+export type Branch = {
+    name: string
+    commit: Commit
+    protected: boolean
+    protection: Protection
+    protection_url: string
+}
+
+type Commit = {
+    sha: string
+    url: string
+}
+
+type RequiredStatusChecks = {
+    enforcement_level: string
+    contexts: string[]
+}
+
+type Protection = {
+    enabled: boolean
+    required_status_checks: RequiredStatusChecks
 }

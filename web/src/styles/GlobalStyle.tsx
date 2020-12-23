@@ -12,57 +12,13 @@ const GlobalStyle = createGlobalStyle`
     user-select: none;
     -webkit-user-select: none;
 }
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	font-size: 100%;
-	font: inherit;
-    vertical-align: baseline;
+html {
+    min-height: 937px;
 }
-a, button, p, span {
-    width: auto;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-button {
-    background: inherit;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-html, body, #root, .Container {
+html, head, body, #root, .Container {
     height: 100%;
 }
+
 .Wait {
     margin: 0 auto;
     width: auto;
@@ -82,6 +38,66 @@ html, body, #root, .Container {
     padding: 20px;
     background: #363b42;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2);
+}
+.Modal-Overlay {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .2);
+    position: fixed;
+}
+.Modal {
+    top: 50%;
+    left: 50%;
+    padding: 10px;
+    border-radius: 10px;
+    animation-duration: .2s;
+    animation-name: modalShow;
+    width: 400px;
+    height: 150px;
+    background: #fff;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2);
+    position: fixed;
+    transform: translate(-50%, -50%);
+}
+.Modal-Content {
+    border-radius: 10px 10px 0 0;
+    height: 70%;
+    color: #000;
+    display: grid;
+    place-items: center;
+}
+.Modal-Content p {
+    color: #000;
+    font-size: 1.3vw;
+}
+.Modal-Button {
+    height: 30%;
+    color: #000;
+    display: flex;
+    align-content: center;
+    justify-content: flex-end;
+}
+.Modal-Button button {
+    padding: 0 15px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 800;
+}
+.Modal-Button-Close {
+    background: rgb(70, 70, 196);
+}
+
+@keyframes modalShow {
+    from {
+        width: 0px;
+        height: 0px;
+    }
+    to {
+        width: 400px;
+        height: 150px;
+    }
 }
 `
 

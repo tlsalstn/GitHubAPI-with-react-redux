@@ -1,5 +1,5 @@
-import { User, UserAction, userRequest, userSuccess, userFailure, cachedUser } from "./actions"
-import { USER_REQUEST, USER_SUCCESS, USER_FAILURE, SET_USER } from "./actions/types"
+import { User, UserAction, getUserRequest, getUserSuccess, getUserFailure } from "./actions"
+import { GET_USER_REQUEST, GET_USER_SUCCESS, GET_USER_FAILURE } from "./actions/types"
 import { userAPI } from "./thunk"
 
 type UserState = {
@@ -15,51 +15,39 @@ const initialState: UserState = {
 }
 
 export const getUser = (name: string) => async (dispatch: Function) => {
-    dispatch(userRequest())
+    dispatch(getUserRequest())
 
     try {
         const user = await userAPI(name)
         
-        dispatch(userSuccess(user.data))
+        dispatch(getUserSuccess(user.data))
     } catch (error) {
         console.log(error)
-        dispatch(userFailure(error.response.data.message))
+        dispatch(getUserFailure(error.response.data.message))
     }
 }
 
-export const setUser = (user: User) => async (dispatch: Function) => {
-    dispatch(cachedUser(user))
-}
-
-function user(state: UserState = initialState, action: UserAction) {
+export default function user(state: UserState = initialState, action: UserAction) {
     switch(action.type) {
-        case USER_REQUEST:
+        case GET_USER_REQUEST:
             return {
                 ...state,
                 fetchingUpdate: true,
-                message: "",
                 error: ""
             }
-        case USER_SUCCESS:
+        case GET_USER_SUCCESS:
             return {
                 ...state,
                 fetchingUpdate: false,
                 user: action.user
             }
-        case USER_FAILURE:
+        case GET_USER_FAILURE:
             return {
                 ...state,
                 fetchingUpdate: false,
                 error: action.error
             }
-        case SET_USER:
-            return {
-                ...state,
-                user: action.user
-            }
         default:
             return state
     }
 }
-
-export default user

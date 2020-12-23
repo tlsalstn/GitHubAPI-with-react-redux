@@ -13,4 +13,4 @@ const Badge = ({ text }: Props) => {
     )
 }
 
-export default Badge
+export default React.memo(Badge)

@@ -8,11 +8,7 @@ interface Props {
 const Loading = ({ show }: Props) => {
     return (
         <div className="Loading" style={{display: show ? "grid" : "none"}}>
-            <div className="loadingio-spinner-spinner-v8pl236sxg">
-                <div className="ldio-b38t6mcayng">
-                    <div/><div/><div/><div/><div/><div/><div/><div/><div/><div/>
-                </div>
-            </div>
+            <img src="https://t1.daumcdn.net/cfile/blog/2260284A586B5E4821" alt="Loading Gif" />
         </div>
     )
 }

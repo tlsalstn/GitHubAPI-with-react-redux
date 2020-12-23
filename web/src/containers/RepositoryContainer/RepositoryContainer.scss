@@ -1,0 +1,78 @@
+.RepositoryContainer {
+    background: #26292c;
+    min-height: 937px;
+    &-Wrap {
+        margin: 0 auto;
+        padding: 30px 0;
+        width: 60%;
+        height: auto;
+        & > p {
+            margin-bottom: 30px;
+            font-size: 30px;
+        }
+        &-Content {
+            &-Menu {
+                width: 100%;
+                ul {
+                    border-bottom: 1px solid rgba(255, 255, 255, .5);
+                    display: flex;
+                    justify-content: space-around;
+                    list-style: none;
+                    li {
+                        border-bottom: 2px solid transparent;
+                        padding: 15px 0;
+                        cursor: pointer;
+                        text-align: center;
+                        &:hover {
+                            border-bottom: 2px solid rgba(255, 255, 255, .5);
+                        }
+                        &[data-aria-selected="true"] {
+                            border-bottom-color: #fff;
+                        }
+                    }
+                }
+                & > div > p {
+                    overflow-wrap: break-word;
+                    word-wrap: break-word;
+                }
+            }
+            &-List {
+                &-Type {
+                    select {
+                        margin: 5px 5px 10px;
+                        border-radius: 5px;
+                        padding: 6px 20px;
+                        width: auto;
+                        color: #000;
+                        cursor: pointer;
+                        font-weight: bold;
+                        &:hover {
+                            background: rgba(255, 255, 255, .8);
+                        }
+                        option {
+                            color: #000;
+                        }
+                    }
+                }
+                padding: 10px 0;
+                ul {
+                    list-style: none;
+                    li {
+                        border-top: 1px solid #cacaca;
+                        padding: 5px 0;
+                        &:last-child {
+                            border-bottom: 1px solid #cacaca;
+                        }
+                        a {
+                            padding: 0 5px;
+                            text-decoration: none;
+                            &:hover {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,39 @@
+.LoginContainer {
+    background: rgb(24, 26, 29);
+    display: grid;
+    place-items: center;
+    &-Form {
+        border-radius: 10px;
+        padding: 20px;
+        width: 500px;
+        height: auto;
+        background: rgb(40, 43, 48);
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2);
+        display: grid;
+        place-items: center;
+        p {
+            text-align: center;
+        }
+        a {
+            border-radius: 10px;
+            padding: 10px 0;
+            width: 100%;
+            height: auto;
+            background: #360149;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            text-decoration: none;
+            transition: .2s;
+            &:hover {
+                box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .8);
+            }
+            svg {
+                margin-right: 10px;
+                width: 34px;
+            }
+        }
+    }
+}

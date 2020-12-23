@@ -1,27 +1,21 @@
-import { USER_REQUEST, USER_SUCCESS, USER_FAILURE, SET_USER } from "./types";
+import { GET_USER_REQUEST, GET_USER_SUCCESS, GET_USER_FAILURE } from "./types";
 
-export const userRequest = () => ({
-    type: USER_REQUEST
+export const getUserRequest = () => ({
+    type: GET_USER_REQUEST
 })
-export const userSuccess = (user: User) => ({
-    type: USER_SUCCESS,
+export const getUserSuccess = (user: User) => ({
+    type: GET_USER_SUCCESS,
     user
 })
-export const userFailure = (error: string) => ({
-    type: USER_FAILURE,
+export const getUserFailure = (error: string) => ({
+    type: GET_USER_FAILURE,
     error
 })
 
-export const cachedUser = (user: User) => ({
-    type: SET_USER,
-    user
-})
-
 export type UserAction =
-    | ReturnType<typeof userRequest>
-    | ReturnType<typeof userSuccess>
-    | ReturnType<typeof userFailure>
-    | ReturnType<typeof cachedUser>
+    | ReturnType<typeof getUserRequest>
+    | ReturnType<typeof getUserSuccess>
+    | ReturnType<typeof getUserFailure>
 
 export type User = {
     login: string

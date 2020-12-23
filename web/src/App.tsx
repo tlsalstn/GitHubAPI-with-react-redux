@@ -1,24 +1,19 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom"
 import LoginContainer from './containers/LoginContainer/LoginContainer'
 import MainContainer from './containers/MainContainer/MainContainer';
-import RedirectContainer from './containers/RedirectContainer/RedirectContainer';
+import RepositoryContainer from './containers/RepositoryContainer/RepositoryContainer';
 
 function App() {
   return (
     <Router>
-      {window.localStorage.getItem('github_token') ?
         <Switch>
-          <Route path="/home" component={MainContainer} />
-          <Redirect from="*" to="/home" />
+          <Route exact path="/login" component={LoginContainer} />
+          <Route exact path="/" component={MainContainer} />
+          <Route exact path="/:username" component={MainContainer} />
+          <Route path="/:username/repo/:repo" component={RepositoryContainer} />
+          <Redirect to="/" />
         </Switch>
-        :
-        <Switch>
-          <Route path="/login" component={LoginContainer} />
-          <Route path="/redirect" component={RedirectContainer} />
-          <Redirect to="/login" />
-        </Switch>
-      }
     </Router>
   );
 }

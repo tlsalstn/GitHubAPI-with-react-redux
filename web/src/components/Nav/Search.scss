@@ -1,0 +1,17 @@
+.Nav-Search {
+    height: 150px;
+    background: #181a1d;
+    display: grid;
+    place-items: center;
+
+    input {
+        border: 0;
+        border-radius: 10px;
+        padding: 10px 16px;
+        width: 30%;
+        min-width: 400px;
+        height: 40%;
+        background: rgba(0, 0, 0, .2);
+        font-size: 20px;
+    }
+}
